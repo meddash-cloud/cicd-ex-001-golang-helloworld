@@ -1,4 +1,4 @@
-name: ci
+name: cicd-ex-001-golang-ci
 
 env:
   PROJECT_NAME: cicd-ex-001-golang-helloworld
@@ -51,7 +51,6 @@ jobs:
           echo "updating image tag in heml/http-service/values.yaml "
           echo "list cwd"
           ls 
-          ls cicd-ex-001-golang-helloworld
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/http-service/values.yaml
           git add . 
           git commit -m "update image tag in heml values.yaml"
