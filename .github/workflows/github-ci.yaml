@@ -53,6 +53,9 @@ jobs:
           echo "clone repo $REPO_NAME"
           echo git clone https://oauth2:${{ secrets.PAT }}@github.com/${{ github.repository_owner }}/$REPO_NAME.git
           git clone https://oauth2:${{ secrets.PAT }}@github.com/${{ github.repository_owner }}/$REPO_NAME.git
+          cd $REPO_NAME
+          echo "checkout main branch"
+          git checkout main
           ls 
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/http-service/values.yaml
           git add . 
