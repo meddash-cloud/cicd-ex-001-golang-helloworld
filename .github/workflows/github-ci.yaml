@@ -49,6 +49,7 @@ jobs:
         uses: actions/checkout@v2
       - run: |
           echo "updating image tag in heml/http-service/values.yaml "
+          git config --global user.email meddash-ci-bot@meddash.cloud && git config --global user.name meddash-ci-bot
           echo "list cwd"
           ls 
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/http-service/values.yaml
