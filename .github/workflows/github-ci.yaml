@@ -1,7 +1,7 @@
 name: cicd-ex-001-golang-ci
 
 env:
-  PROJECT_NAME: cicd-ex-001-golang-helloworld
+  REPO_NAME: cicd-ex-001-golang-helloworld
   
 on:
   push:
@@ -50,7 +50,8 @@ jobs:
       - run: |
           echo "updating image tag in heml/http-service/values.yaml "
           git config --global user.email meddash-ci-bot@meddash.cloud && git config --global user.name meddash-ci-bot
-          echo "list cwd"
+          echo "clone repo $REPO_NAME"
+          git clone https://oauth2:${{ secrets.PAT }}@github.com/${{ github.repository_owner }}/$REPO_NAME.git
           ls 
           sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/http-service/values.yaml
           git add . 
