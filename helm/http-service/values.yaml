@@ -8,7 +8,7 @@ image:
   repository: halilagin/cicd-ex-001-golang-helloworld
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 652ed8b00432647aed6ee2c8b3680a84f900f824
+  tag: 9fe489e64cea617cc11fb7a775ac2a1a9d0224e1
 
 imagePullSecrets: []
 nameOverride: ""
