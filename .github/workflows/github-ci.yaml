@@ -1,7 +1,7 @@
 name: cicd-ex-001-golang-ci
 
 env:
-  DEPLOYMENT_REPO_NAME: cicd-ex-001-golang-helloworld-deployment
+  DEPLOYMENT_REPO_NAME: cicd-deployments
   
 on:
   push:
