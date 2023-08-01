@@ -2,6 +2,7 @@ name: cicd-ex-001-golang-ci
 
 env:
   DEPLOYMENT_REPO_NAME: cicd-deployments
+  CICD_EXAMPLE_DIR: cicd-ex-001
   
 on:
   push:
@@ -45,7 +46,7 @@ jobs:
     needs: docker-build-and-push
     steps:
       - run: |
-          echo "updating image tag in heml/http-service/values.yaml "
+          echo "updating image tag in ${{CICD_EXAMPLE_DIR}}/heml/http-service/values.yaml "
           git config --global user.email meddash-ci-bot@meddash.cloud && git config --global user.name meddash-ci-bot
           echo "clone repo $DEPLOYMENT_REPO_NAME"
           echo git clone https://oauth2:${{ secrets.DEPLOYMENT_REPO_PAT }}@github.com/${{ github.repository_owner }}/$DEPLOYMENT_REPO_NAME.git
@@ -54,7 +55,7 @@ jobs:
           echo "checkout main branch"
           git checkout main
           ls 
-          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," helm/http-service/values.yaml
+          sed -i "s,tag:.*,tag:\ ${{ github.sha }}," ${{CICD_EXAMPLE_DIR}}/helm/http-service/values.yaml
           git add . 
           git commit -m "update image tag in heml values.yaml"
           git push
